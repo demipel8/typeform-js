@@ -1,30 +1,13 @@
 /**
  * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]
  */
-const request = require("client-request");
-const api ='https://api.typeform.io/latest/';
-const options = {
-	uri: api,
-	method: "GET",
-	json: true
-};
 
-let token = '';
+import {set as setRequest} from './request';
+import Form from './endpoints/form';
 
 export default (sessionToken) => {
 
-	token = sessionToken;
+	setRequest(sessionToken);
 
-	options.headers = {
-		'X-API-TOKEN': sessionToken
-	};
-
-	return {
-		latest: () => request(options, function callback(err, response, body) {
-			console.log(response.statusCode);
-			if (body) {
-				console.log(body)
-			}
-		})
-	}
+	return Object.assign(Form(), {});
 }

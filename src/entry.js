@@ -3,7 +3,7 @@
  */
 
 import {set as setRequest} from './request';
-import Form from './endpoints/form';
+import Forms from './endpoints/forms';
 import Base from './endpoints/base';
 
 export default (sessionToken) => {
@@ -12,7 +12,7 @@ export default (sessionToken) => {
 
 	return Object.assign(
 		{},
-		Form(),
+		Forms(),
 		Base()
 	);
 }

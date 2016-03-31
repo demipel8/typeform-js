@@ -1,7 +1,7 @@
 /**
  * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]
  */
-import Form from '../../src/endpoints/form';
+import Forms from '../../src/endpoints/forms';
 
 let title = 'title';
 let id = 'anID';
@@ -12,16 +12,16 @@ let fields = [
 	}
 ];
 
-describe( 'Form endpoint', () => {
+describe( 'Forms endpoint', () => {
 
 	it( 'Should return and object with the required properties', () => {
-		expect(Form().form).toBeDefined();
-		expect(Form().form.get).toBeDefined();
+		expect(Forms().form).toBeDefined();
+		expect(Forms().form.get).toBeDefined();
 	});
 
 	it( 'form method should throw error if title or fields parameters are not set', () => {
 
-		let endpoint = Form();
+		let endpoint = Forms();
 
 		expect(endpoint.form).toThrow();
 		expect(() => endpoint.form(title)).toThrow();
@@ -30,35 +30,35 @@ describe( 'Form endpoint', () => {
 
 	it( 'form method should throw error if title is not a string', () => {
 
-		let endpoint = Form();
+		let endpoint = Forms();
 
 		expect(() => endpoint.form({}, fields)).toThrow();
 	});
 
 	it( 'form method should return a promise', (done) => {
 
-		let endpoint = Form();
+		let endpoint = Forms();
 
 		endpoint.form(title, fields).catch(done)
 	});
 
 	it( 'form.get method should throw error if id is not defined', () => {
 
-		let endpoint = Form();
+		let endpoint = Forms();
 
 		expect(() => endpoint.form.get()).toThrow();
 	});
 
 	it( 'form.get method should throw error if id is not a string', () => {
 
-		let endpoint = Form();
+		let endpoint = Forms();
 
 		expect(() => endpoint.form.get({})).toThrow();
 	});
 
 	it( 'form.get method should return a promise', (done) => {
 
-		let endpoint = Form();
+		let endpoint = Forms();
 
 		endpoint.form.get(id).catch(done)
 	});

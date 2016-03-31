@@ -1,25 +1,24 @@
 
-var webpack = require('karma-webpack');
-
 module.exports = function (config) {
 	config.set({
-		frameworks: [ 'jasmine' ],
+		frameworks: [ 'browserify', 'jasmine' ],
 		files: [
 			'./node_modules/babel-polyfill/browser.js',
 			'./node_modules/phantomjs-polyfill/bind-polyfill.js',
 			'./spec/**/*.js'
 		],
 		plugins: [
-			webpack,
 			'karma-jasmine',
+			'karma-browserify',
 			'karma-phantomjs-launcher',
 			'karma-coverage',
-			'karma-mocha-reporter'
+			'karma-mocha-reporter',
+			'karma-babel-preprocessor'
 		],
 		browsers: [ 'PhantomJS' ],
 		preprocessors: {
-			'./spec/**/*.js': ['webpack'],
-			'./src/**/*.js': ['webpack']
+			'./spec/**/*.js': ['browserify'],
+			'./src/**/*.js': ['browserify']
 		},
 		reporters: [ 'mocha', 'coverage' ],
 		mochaReporter: {
@@ -34,18 +33,23 @@ module.exports = function (config) {
 				{ type: 'cobertura', subdir: '.', file: 'cobertura.txt' }
 			]
 		},
-		webpack: {
-			module: {
-				loaders: [{
-					test: /\.(js|jsx)$/, exclude: /(bower_components|node_modules)/,
-					loader: 'babel-loader'
-				}],
-				postLoaders: [{
-					test: /\.(js|jsx)$/, exclude: /(node_modules|bower_components|tests)/,
-					loader: 'istanbul-instrumenter'
-				}]
-			}
+		babelPreprocessor: {
+			options: {
+				presets: ['es2015']
+			}/*,
+			filename: function (file) {
+				return file.originalPath.replace(/\.js$/, '.es5.js');
+			},
+			sourceFileName: function (file) {
+				return file.originalPath;
+			}*/
 		},
-		webpackMiddleware: { noInfo: true }
+
+		// browserify configuration
+		browserify: {
+			debug: true,
+			extensions: ['.js'],
+			transform: [ 'babelify' ]
+		}
 	});
 };

@@ -17,12 +17,33 @@ exports.default = function () {
 		method: 'POST'
 	};
 
+	form.get = get;
+
 	return {
 		form: form
 	};
 
-	function form(body) {
+	function form(title, fields) {
+		var extra = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+
+
+		var body = {
+			title: title,
+			fields: fields
+		};
+
+		Object.assign(body, extra);
+
 		return (0, _request2.default)(Object.assign({}, { body: body }, options));
+	}
+
+	function get(id) {
+		var options = {
+			uri: 'forms/' + id,
+			method: 'GET'
+		};
+
+		return (0, _request2.default)(options);
 	}
 }; /**
     * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]

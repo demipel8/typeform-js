@@ -1,7 +1,7 @@
 /**
  * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]
  */
-const request = require("client-request");
+import request from "client-request";
 const api ='https://api.typeform.io/latest/';
 
 let token = '';
@@ -11,7 +11,7 @@ export function set(sessionToken) {
 	token = sessionToken;
 }
 
-export default function(options) {
+export default function(options = {}) {
 
 	if (!token) throw new Error('Token must be set, use this module\'s set method');
 
@@ -40,7 +40,7 @@ export default function(options) {
 		})
 	});
 
-	function setUri(endPoint) {
+	function setUri(endPoint = '') {
 		return `${api}${endPoint}`;
 	}
 }

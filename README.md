@@ -12,6 +12,9 @@ import (*ES6*) or require the package and set your API-key for authentication.
 Every method of the library returns a promise tha will be fulfilled with
 typeform.io's response.
 
+**src** folder contain the ES6 version.
+**dist** folder contains the ES5 version.
+
 ```javascript
 import Typeform from 'typeform-js';
 
@@ -19,6 +22,16 @@ let typeform = Typeform('MY_API_SECRET');
 ```
 
 ##Available endpoints
+
+###base
+
+The base endpoint response contains information about the API.
+
+example
+
+```javascript
+typeform.base().then( res => console.log(res));
+```
 
 ###form
 

@@ -27,6 +27,8 @@ exports.default = function () {
 		var extra = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
 
 
+		if (typeof title !== 'string' || !fields) throw new Error('Required parameters missing');
+
 		var body = {
 			title: title,
 			fields: fields
@@ -38,6 +40,9 @@ exports.default = function () {
 	}
 
 	function get(id) {
+
+		if (typeof id !== 'string') throw new Error('Id parameters missing or not a string');
+
 		var options = {
 			uri: 'forms/' + id,
 			method: 'GET'

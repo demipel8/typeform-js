@@ -140,3 +140,8 @@ example:
 ```javascript
 typeform.design.get( 'id' );
 ```
+
+#TODO
+
+- Urls endpoint
+- fields Objects?

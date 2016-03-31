@@ -22,7 +22,7 @@ let typeform = Typeform('MY_API_SECRET');
 
 ###form
 
-####Creates a form
+####Create a form
 
 arguments:
 
@@ -46,7 +46,7 @@ typeform.form( "My first typeform",
 );
 ```
 
-####get a form
+####Get a form
 
 arguments:
 

@@ -33,7 +33,7 @@ example
 typeform.base().then( res => console.log(res));
 ```
 
-###form
+###forms
 
 ####Create a form
 

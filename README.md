@@ -26,9 +26,11 @@ let typeform = Typeform('MY_API_SECRET');
 
 arguments:
 
-| title  | string |          |
-| fields | array  |          |
-| extra  | object | optional |
+| Command | Type | Optional | Description |
+| --- | --- | --- | --- |
+| Title  | string | false | form title |
+| Fields | array  | false | form fields |
+| Extra  | object | true | extra options |
 
 example
 
@@ -48,7 +50,9 @@ typeform.form( "My first typeform",
 
 arguments:
 
-| id  | string |          |
+| Command | Type | Optional | Description |
+| --- | --- | --- | --- |
+| Id  | string | false | form id |
 
 example:
 

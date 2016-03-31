@@ -72,3 +72,33 @@ example:
 ```javascript
 typeform.form.get( 'id' );
 ```
+
+###images
+
+####send an image
+
+arguments:
+
+| Command | Type | Optional | Description |
+| --- | --- | --- | --- |
+| Url  | string | no | url to sent |
+
+example
+
+```javascript
+typeform.image( "http://MY_IMAGE.URL");
+```
+
+####Get an image
+
+arguments:
+
+| Command | Type | Optional | Description |
+| --- | --- | --- | --- |
+| Id  | string | no | form id |
+
+example:
+
+```javascript
+typeform.image.get( 'id' );
+```

@@ -5,6 +5,7 @@
 import {set as setRequest} from './request';
 import Forms from './endpoints/forms';
 import Base from './endpoints/base';
+import Images from './endpoints/images';
 
 export default (sessionToken) => {
 
@@ -13,6 +14,7 @@ export default (sessionToken) => {
 	return Object.assign(
 		{},
 		Forms(),
-		Base()
+		Base(),
+		Images()
 	);
 }

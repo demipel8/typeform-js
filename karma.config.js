@@ -5,6 +5,7 @@ module.exports = function (config) {
 		files: [
 			'./node_modules/babel-polyfill/browser.js',
 			'./node_modules/phantomjs-polyfill/bind-polyfill.js',
+			'./spec/request.js',
 			'./spec/**/*.js'
 		],
 		plugins: [

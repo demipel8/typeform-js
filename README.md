@@ -28,9 +28,9 @@ arguments:
 
 | Command | Type | Optional | Description |
 | --- | --- | --- | --- |
-| Title  | string | false | form title |
-| Fields | array  | false | form fields |
-| Extra  | object | true | extra options |
+| Title  | string | no | form title |
+| Fields | array  | no | form fields |
+| Extra  | object | yes | extra options |
 
 example
 
@@ -52,7 +52,7 @@ arguments:
 
 | Command | Type | Optional | Description |
 | --- | --- | --- | --- |
-| Id  | string | false | form id |
+| Id  | string | no | form id |
 
 example:
 

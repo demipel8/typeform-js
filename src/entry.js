@@ -6,6 +6,7 @@ import {set as setRequest} from './request';
 import Forms from './endpoints/forms';
 import Base from './endpoints/base';
 import Images from './endpoints/images';
+import Designs from './endpoints/designs';
 
 export default (sessionToken) => {
 
@@ -15,6 +16,7 @@ export default (sessionToken) => {
 		{},
 		Forms(),
 		Base(),
-		Images()
+		Images(),
+		Designs()
 	);
 }

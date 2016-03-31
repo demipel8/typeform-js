@@ -18,15 +18,17 @@ var _images = require('./endpoints/images');
 
 var _images2 = _interopRequireDefault(_images);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _designs = require('./endpoints/designs');
 
-/**
- * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]
- */
+var _designs2 = _interopRequireDefault(_designs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (sessionToken) {
 
 	(0, _request.set)(sessionToken);
 
-	return Object.assign({}, (0, _forms2.default)(), (0, _base2.default)(), (0, _images2.default)());
-};
+	return Object.assign({}, (0, _forms2.default)(), (0, _base2.default)(), (0, _images2.default)(), (0, _designs2.default)());
+}; /**
+    * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]
+    */

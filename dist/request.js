@@ -26,7 +26,8 @@ exports.default = function () {
 			if (!isSuccessful) {
 				reject({
 					code: response.statusCode,
-					message: response.statusMessage
+					message: response.statusMessage,
+					description: body.description
 				});
 
 				return;

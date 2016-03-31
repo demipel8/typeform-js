@@ -95,10 +95,48 @@ arguments:
 
 | Command | Type | Optional | Description |
 | --- | --- | --- | --- |
-| Id  | string | no | form id |
+| Id  | string | no | image id |
 
 example:
 
 ```javascript
 typeform.image.get( 'id' );
+```
+
+###designs
+
+####Create a design
+
+arguments:
+
+| Command | Type | Optional | Description |
+| --- | --- | --- | --- |
+| Colors  | object | no | design colors |
+| Font | string  | no | google web font for this design |
+
+example
+
+```javascript
+typeform.design({
+        "question": "#3D3D3D",
+        "button": "#4FB0AE",
+        "answer": "#4FB0AE",
+        "background": "#FFFFFF"
+    },
+    'Playfair'
+);
+```
+
+####Get a design
+
+arguments:
+
+| Command | Type | Optional | Description |
+| --- | --- | --- | --- |
+| Id  | string | no | design id |
+
+example:
+
+```javascript
+typeform.design.get( 'id' );
 ```

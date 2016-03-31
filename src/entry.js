@@ -3,11 +3,20 @@
  */
 
 import {set as setRequest} from './request';
-import Form from './endpoints/form';
+import Forms from './endpoints/forms';
+import Base from './endpoints/base';
+import Images from './endpoints/images';
+import Designs from './endpoints/designs';
 
 export default (sessionToken) => {
 
 	setRequest(sessionToken);
 
-	return Object.assign(Form(), {});
+	return Object.assign(
+		{},
+		Forms(),
+		Base(),
+		Images(),
+		Designs()
+	);
 }

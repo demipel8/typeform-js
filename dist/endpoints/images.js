@@ -13,28 +13,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = function () {
 
 	var options = {
-		uri: 'forms',
+		uri: 'images',
 		method: 'POST'
 	};
 
-	form.get = get;
+	image.get = get;
 
 	return {
-		form: form
+		image: image
 	};
 
-	function form(title, fields) {
-		var extra = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+	function image(url) {
 
-
-		if (typeof title !== 'string' || !fields) throw new Error('Required parameters missing');
+		if (typeof url !== 'string') throw new Error('Url parameter missing or not a string');
 
 		var body = {
-			title: title,
-			fields: fields
+			url: url
 		};
-
-		Object.assign(body, extra);
 
 		return (0, _request2.default)(Object.assign({}, { body: body }, options));
 	}
@@ -44,7 +39,7 @@ exports.default = function () {
 		if (typeof id !== 'string') throw new Error('Id parameters missing or not a string');
 
 		var options = {
-			uri: 'forms/' + id,
+			uri: 'images/' + id,
 			method: 'GET'
 		};
 

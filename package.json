@@ -1,16 +1,24 @@
 {
   "name": "typeform-js",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "typeform client for js",
   "main": "entry.js",
-  "private": true,
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/demipel8/typeform-js.git"
+  },
+  "keywords": [
+    "typeform",
+    "quiz",
+    "js",
+    "javascript"
+  ],
   "scripts": {
     "test": "./node_modules/.bin/karma start --auto-watch --no-single-run karma.config.js",
-    "build": "webpack -p --config webpack.config.js",
-    "start": "./node_modules/.bin/webpack-dev-server --host 0.0.0.0"
+    "build": "./node_modules/.bin/gulp"
   },
   "author": "Alvaro Martinez de Miguel [demipel8@gmail.com]",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.3.26",
     "babel-polyfill": "^6.5.0",

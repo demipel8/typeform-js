@@ -10,31 +10,31 @@ var _request2 = _interopRequireDefault(_request);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var endpoint = 'designs'; /**
+                           * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]
+                           */
+
 exports.default = function () {
 
 	var options = {
-		uri: 'forms',
+		uri: '' + endpoint,
 		method: 'POST'
 	};
 
-	form.get = get;
+	design.get = get;
 
 	return {
-		form: form
+		design: design
 	};
 
-	function form(title, fields) {
-		var extra = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+	function design(colors, font) {
 
-
-		if (typeof title !== 'string' || !fields) throw new Error('Required parameters missing');
+		if (!colors || typeof font !== 'string') throw new Error('Required parameters missing');
 
 		var body = {
-			title: title,
-			fields: fields
+			colors: colors,
+			font: font
 		};
-
-		Object.assign(body, extra);
 
 		return (0, _request2.default)(Object.assign({}, { body: body }, options));
 	}
@@ -44,12 +44,10 @@ exports.default = function () {
 		if (typeof id !== 'string') throw new Error('Id parameters missing or not a string');
 
 		var options = {
-			uri: 'forms/' + id,
+			uri: endpoint + '/' + id,
 			method: 'GET'
 		};
 
 		return (0, _request2.default)(options);
 	}
-}; /**
-    * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]
-    */
+};

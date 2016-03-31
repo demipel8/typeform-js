@@ -19,6 +19,8 @@ export default () => {
 
 	function form(title, fields, extra = {}) {
 
+		if (typeof title !== 'string' || !fields) throw new Error('Required parameters missing');
+
 		let body = {
 			title,
 			fields
@@ -30,6 +32,8 @@ export default () => {
 	}
 
 	function get(id) {
+
+		if (typeof id !== 'string' ) throw new Error('Id parameters missing or not a string');
 
 		let options = {
 			uri: `forms/${id}`,

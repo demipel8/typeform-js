@@ -7,6 +7,7 @@ import Forms from './endpoints/forms';
 import Base from './endpoints/base';
 import Images from './endpoints/images';
 import Designs from './endpoints/designs';
+import Urls from './endpoints/urls';
 
 export default (sessionToken) => {
 
@@ -17,6 +18,7 @@ export default (sessionToken) => {
 		Forms(),
 		Base(),
 		Images(),
-		Designs()
+		Designs(),
+		Urls()	
 	);
 }

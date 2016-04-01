@@ -141,7 +141,52 @@ example:
 typeform.design.get( 'id' );
 ```
 
+###urls
+
+####Create a new url
+
+arguments:
+
+| Command | Type | Optional | Description |
+| --- | --- | --- | --- |
+| form_id  | object | no | actual id |
+
+example
+
+```javascript
+typeform.url('anId');
+```
+
+####Get a url
+
+arguments:
+
+| Command | Type | Optional | Description |
+| --- | --- | --- | --- |
+| Id  | string | no | url id |
+
+example:
+
+```javascript
+typeform.url.get( 'id' );
+```
+
+###Get a url
+
+arguments:
+
+| Command | Type | Optional | Description |
+| --- | --- | --- | --- |
+| Old_id  | string | no | current url id |
+| New_id  | string | no | new url id |
+
+example:
+
+```javascript
+typeform.url.set( 'id', 'newSuperCoolId' );
+```
+
 #TODO
 
-- Urls endpoint
+- make request a factory to allow multiple tokens at once
 - fields Objects?

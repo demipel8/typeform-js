@@ -24,11 +24,8 @@ exports.default = function () {
 			var isSuccessful = response.statusCode > 199 && response.statusCode < 300;
 
 			if (!isSuccessful) {
-				reject({
-					code: response.statusCode,
-					message: response.statusMessage,
-					description: body.description
-				});
+
+				reject(composeError(response, body));
 
 				return;
 			}
@@ -41,6 +38,20 @@ exports.default = function () {
 		var endPoint = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
 
 		return '' + api + endPoint;
+	}
+
+	function composeError(response, body) {
+
+		var error = {
+			code: response.statusCode,
+			message: response.statusMessage
+		};
+
+		if (body && body.description) {
+			error.description = body.description;
+		}
+
+		return error;
 	}
 };
 

@@ -28,11 +28,8 @@ export default function(options = {}) {
 			let isSuccessful = response.statusCode > 199 && response.statusCode < 300;
 
 			if (!isSuccessful) {
-				reject({
-					code: response.statusCode,
-					message: response.statusMessage,
-					description: body.description
-				});
+
+				reject( composeError(response, body) );
 
 				return;
 			}
@@ -43,5 +40,19 @@ export default function(options = {}) {
 
 	function setUri(endPoint = '') {
 		return `${api}${endPoint}`;
+	}
+
+	function composeError(response, body) {
+
+		let error = {
+			code: response.statusCode,
+			message: response.statusMessage
+		};
+
+		if (body && body.description ) {
+			error.description = body.description;
+		}
+
+		return error;
 	}
 }

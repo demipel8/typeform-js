@@ -10,7 +10,7 @@ var _request2 = _interopRequireDefault(_request);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function () {
+exports.default = function (Request) {
 
 	var options = {
 		uri: 'forms',
@@ -36,7 +36,7 @@ exports.default = function () {
 
 		Object.assign(body, extra);
 
-		return (0, _request2.default)(Object.assign({}, { body: body }, options));
+		return Request(Object.assign({}, { body: body }, options));
 	}
 
 	function get(id) {
@@ -48,7 +48,7 @@ exports.default = function () {
 			method: 'GET'
 		};
 
-		return (0, _request2.default)(options);
+		return Request(options);
 	}
 }; /**
     * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]

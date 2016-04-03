@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _request = require('./request');
 
+var _request2 = _interopRequireDefault(_request);
+
 var _forms = require('./endpoints/forms');
 
 var _forms2 = _interopRequireDefault(_forms);
@@ -34,7 +36,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (sessionToken) {
 
-	(0, _request.set)(sessionToken);
+	var request = (0, _request2.default)(sessionToken);
 
-	return Object.assign({}, (0, _forms2.default)(), (0, _base2.default)(), (0, _images2.default)(), (0, _designs2.default)(), (0, _urls2.default)());
+	return Object.assign({}, (0, _base2.default)(request), (0, _forms2.default)(request), (0, _images2.default)(request), (0, _designs2.default)(request), (0, _urls2.default)(request));
 };

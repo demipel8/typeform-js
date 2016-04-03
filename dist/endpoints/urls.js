@@ -3,20 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+/**
+ * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]
+ */
 
-var _request = require('../request');
-
-var _request2 = _interopRequireDefault(_request);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ENDPOINT = 'urls'; /**
-                        * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]
-                        */
-
+var ENDPOINT = 'urls';
 var ERROR_MESSAGE = 'Id parameters missing or not a string';
 
-exports.default = function () {
+exports.default = function (Request) {
 
 	var options = {
 		uri: '' + ENDPOINT,
@@ -38,7 +32,7 @@ exports.default = function () {
 			form_id: form_id
 		};
 
-		return (0, _request2.default)(Object.assign({}, { body: body }, options));
+		return Request(Object.assign({}, { body: body }, options));
 	}
 
 	function get(id) {
@@ -50,7 +44,7 @@ exports.default = function () {
 			method: 'GET'
 		};
 
-		return (0, _request2.default)(options);
+		return Request(options);
 	}
 
 	function set(old_id, new_id) {
@@ -66,6 +60,6 @@ exports.default = function () {
 			form_id: new_id
 		};
 
-		return (0, _request2.default)(Object.assign({}, { body: body }, options));
+		return Request(Object.assign({}, { body: body }, options));
 	}
 };

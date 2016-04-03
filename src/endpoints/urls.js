@@ -2,12 +2,10 @@
  * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]
  */
 
-import Request from '../request';
-
 const ENDPOINT = 'urls';
 const ERROR_MESSAGE = 'Id parameters missing or not a string';
 
-export default () => {
+export default (Request) => {
 
 	const options = {
 		uri: `${ENDPOINT}`,

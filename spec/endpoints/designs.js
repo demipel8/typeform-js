@@ -12,16 +12,20 @@ let colors = {
 let font = 'a google font';
 let id = 'anID';
 
+let mock = {
+	request : () => Promise.resolve(1)
+};
+
 describe( 'Design endpoint', () => {
 
 	it( 'Should return and object with the required properties', () => {
-		expect(Design().design).toBeDefined();
-		expect(Design().design.get).toBeDefined();
+		expect(Design(mock.request).design).toBeDefined();
+		expect(Design(mock.request).design.get).toBeDefined();
 	});
 
 	it( 'design method should throw error if title or fields parameters are not set', () => {
 
-		let endpoint = Design();
+		let endpoint = Design(mock.request);
 
 		expect(endpoint.design).toThrow();
 		expect(() => endpoint.design(colors)).toThrow();
@@ -30,37 +34,37 @@ describe( 'Design endpoint', () => {
 
 	it( 'design method should throw error if font is not a string', () => {
 
-		let endpoint = Design();
+		let endpoint = Design(mock.request);
 
 		expect(() => endpoint.design(colors, {})).toThrow();
 	});
 
 	it( 'design method should return a promise', (done) => {
 
-		let endpoint = Design();
+		let endpoint = Design(mock.request);
 
-		endpoint.design(colors, font).catch(done)
+		endpoint.design(colors, font).then(done)
 	});
 
 	it( 'design.get method should throw error if id is not defined', () => {
 
-		let endpoint = Design();
+		let endpoint = Design(mock.request);
 
 		expect(() => endpoint.design.get()).toThrow();
 	});
 
 	it( 'design.get method should throw error if id is not a string', () => {
 
-		let endpoint = Design();
+		let endpoint = Design(mock.request);
 
 		expect(() => endpoint.design.get({})).toThrow();
 	});
 
 	it( 'design.get method should return a promise', (done) => {
 
-		let endpoint = Design();
+		let endpoint = Design(mock.request);
 
-		endpoint.design.get(id).catch(done)
+		endpoint.design.get(id).then(done)
 	});
 
 

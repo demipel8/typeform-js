@@ -4,55 +4,52 @@
 import request from "client-request";
 const api ='https://api.typeform.io/latest/';
 
-let token = '';
+export default function(token) {
 
-export function set(sessionToken) {
+	if (!token) throw new Error('Token must be set');
 
-	token = sessionToken;
+	return  function(options = {}) {
+
+		let opts = Object.assign({}, options, {
+			json: true,
+			headers: {'X-API-TOKEN': token}
+		});
+
+		opts.uri = setUri(options.uri);
+
+		return new Promise(function (resolve, reject) {
+			request(opts, function callback(err, response, body) {
+
+				let isSuccessful = response.statusCode > 199 && response.statusCode < 300;
+
+				if (!isSuccessful) {
+
+					reject(composeError(response, body));
+
+					return;
+				}
+
+				resolve(body);
+			})
+		});
+
+	}
 }
 
-export default function(options = {}) {
+function setUri(endPoint = '') {
+	return `${api}${endPoint}`;
+}
 
-	if (!token) throw new Error('Token must be set, use this module\'s set method');
+function composeError(response, body) {
 
-	let opts = Object.assign({}, options, {
-		json: true,
-		headers: { 'X-API-TOKEN': token }
-	});
+	let error = {
+		code: response.statusCode,
+		message: response.statusMessage
+	};
 
-	opts.uri = setUri(options.uri);
-
-	return new Promise(function (resolve, reject) {
-		request(opts, function callback(err, response, body) {
-
-			let isSuccessful = response.statusCode > 199 && response.statusCode < 300;
-
-			if (!isSuccessful) {
-
-				reject( composeError(response, body) );
-
-				return;
-			}
-
-			resolve(body);
-		})
-	});
-
-	function setUri(endPoint = '') {
-		return `${api}${endPoint}`;
+	if (body && body.description) {
+		error.description = body.description;
 	}
 
-	function composeError(response, body) {
-
-		let error = {
-			code: response.statusCode,
-			message: response.statusMessage
-		};
-
-		if (body && body.description ) {
-			error.description = body.description;
-		}
-
-		return error;
-	}
+	return error;
 }

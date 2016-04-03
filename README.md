@@ -1,6 +1,6 @@
 #typeform-js
 
-typeform client for the browser
+typeform client for node and the browser
 
 ##Installation
 
@@ -188,5 +188,4 @@ typeform.url.set( 'id', 'newSuperCoolId' );
 
 #TODO
 
-- make request a factory to allow multiple tokens at once
 - fields Objects?

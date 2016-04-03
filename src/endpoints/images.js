@@ -2,9 +2,7 @@
  * @author Alvaro Martinez de Miguel (Demi) [demipel8@gmail.com]
  */
 
-import Request from '../request';
-
-export default () => {
+export default (Request) => {
 
 	const options = {
 		uri: 'images',

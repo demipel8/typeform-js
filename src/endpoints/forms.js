@@ -4,7 +4,7 @@
 
 import Request from '../request';
 
-export default () => {
+export default (Request) => {
 
 	const options = {
 		uri: 'forms',

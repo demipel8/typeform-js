@@ -12,16 +12,20 @@ let fields = [
 	}
 ];
 
+let mock = {
+	request : () => Promise.resolve(1)
+};
+
 describe( 'Forms endpoint', () => {
 
 	it( 'Should return and object with the required properties', () => {
-		expect(Forms().form).toBeDefined();
-		expect(Forms().form.get).toBeDefined();
+		expect(Forms(mock.request).form).toBeDefined();
+		expect(Forms(mock.request).form.get).toBeDefined();
 	});
 
 	it( 'form method should throw error if title or fields parameters are not set', () => {
 
-		let endpoint = Forms();
+		let endpoint = Forms(mock.request);
 
 		expect(endpoint.form).toThrow();
 		expect(() => endpoint.form(title)).toThrow();
@@ -30,37 +34,37 @@ describe( 'Forms endpoint', () => {
 
 	it( 'form method should throw error if title is not a string', () => {
 
-		let endpoint = Forms();
+		let endpoint = Forms(mock.request);
 
 		expect(() => endpoint.form({}, fields)).toThrow();
 	});
 
 	it( 'form method should return a promise', (done) => {
 
-		let endpoint = Forms();
+		let endpoint = Forms(mock.request);
 
-		endpoint.form(title, fields).catch(done)
+		endpoint.form(title, fields).then(done);
 	});
 
 	it( 'form.get method should throw error if id is not defined', () => {
 
-		let endpoint = Forms();
+		let endpoint = Forms(mock.request);
 
 		expect(() => endpoint.form.get()).toThrow();
 	});
 
 	it( 'form.get method should throw error if id is not a string', () => {
 
-		let endpoint = Forms();
+		let endpoint = Forms(mock.request);
 
 		expect(() => endpoint.form.get({})).toThrow();
 	});
 
 	it( 'form.get method should return a promise', (done) => {
 
-		let endpoint = Forms();
+		let endpoint = Forms(mock.request);
 
-		endpoint.form.get(id).catch(done)
+		endpoint.form.get(id).then(done);
 	});
 
 

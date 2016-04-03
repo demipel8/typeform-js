@@ -3,56 +3,38 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.set = set;
 
-exports.default = function () {
-	var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+exports.default = function (token) {
+
+	if (!token) throw new Error('Token must be set');
+
+	return function () {
+		var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
 
-	if (!token) throw new Error('Token must be set, use this module\'s set method');
-
-	var opts = Object.assign({}, options, {
-		json: true,
-		headers: { 'X-API-TOKEN': token }
-	});
-
-	opts.uri = setUri(options.uri);
-
-	return new Promise(function (resolve, reject) {
-		(0, _clientRequest2.default)(opts, function callback(err, response, body) {
-
-			var isSuccessful = response.statusCode > 199 && response.statusCode < 300;
-
-			if (!isSuccessful) {
-
-				reject(composeError(response, body));
-
-				return;
-			}
-
-			resolve(body);
+		var opts = Object.assign({}, options, {
+			json: true,
+			headers: { 'X-API-TOKEN': token }
 		});
-	});
 
-	function setUri() {
-		var endPoint = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+		opts.uri = setUri(options.uri);
 
-		return '' + api + endPoint;
-	}
+		return new Promise(function (resolve, reject) {
+			(0, _clientRequest2.default)(opts, function callback(err, response, body) {
 
-	function composeError(response, body) {
+				var isSuccessful = response.statusCode > 199 && response.statusCode < 300;
 
-		var error = {
-			code: response.statusCode,
-			message: response.statusMessage
-		};
+				if (!isSuccessful) {
 
-		if (body && body.description) {
-			error.description = body.description;
-		}
+					reject(composeError(response, body));
 
-		return error;
-	}
+					return;
+				}
+
+				resolve(body);
+			});
+		});
+	};
 };
 
 var _clientRequest = require('client-request');
@@ -66,9 +48,22 @@ var api = 'https://api.typeform.io/latest/'; /**
                                               */
 
 
-var token = '';
+function setUri() {
+	var endPoint = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
 
-function set(sessionToken) {
+	return '' + api + endPoint;
+}
 
-	token = sessionToken;
+function composeError(response, body) {
+
+	var error = {
+		code: response.statusCode,
+		message: response.statusMessage
+	};
+
+	if (body && body.description) {
+		error.description = body.description;
+	}
+
+	return error;
 }

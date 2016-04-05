@@ -4,7 +4,9 @@ typeform client for node and the browser
 
 ##Installation
 
-clone this repo
+```javascript
+npm install --save typeform-js
+```
 
 ##Usage
 
